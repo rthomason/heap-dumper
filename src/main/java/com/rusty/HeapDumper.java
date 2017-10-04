@@ -17,20 +17,23 @@ import java.lang.reflect.Method;
  * This program connects to a local Java process and dumps its heap. It uses RMI to call a native linux function and
  * therefore is only supported on linux and mac. It works in a manner similar to VisualVM.
  * <p/>
- * There are two ways of building and running the program
+ * There are two ways of building and running the program:
  * <p/>
- * 1. Build the project in your IDE and add a dependency on $JAVA_HOME/lib/tools.jar and make sure it is included when building your artifacts.
+ * 1. Build the project in your IDE and add a dependency on $JAVA_HOME/lib/tools.jar and make sure it is included when
+ * building your artifacts. This creates a bigger jar but doesn't rely on the host machine having tools.jar.
  * <p/>
- * After building an executable jar (for example heapdumper.jar) you can run it:
+ * After building an executable jar (heapdumper.jar) you can run it:
  * java -jar heapdumper.jar -pid=12345 -dir=/some/place
  * <p/>
- * 2. Build it through maven and use the included heapdumper.sh bash script to run it.
+ * 2. Build it through maven and use the included heapdumper.sh bash script to run it. Make sure JAVA_HOME is set.
  * <p/>
  * ./heapdumper.sh -pid=12345 -dir=/some/place
  */
 public class HeapDumper {
+
     /**
-     * There are two required command line arguments, the location to write the heap dump, and the java pid.
+     * There are two required command line arguments, the absolute path to a directory to write the heap dump, and the
+     * java pid.
      *
      * @param args command line arguments, specified by -pid=<pid> and -dir=<path>
      */
@@ -222,4 +225,5 @@ public class HeapDumper {
             }
         }
     }
+
 }
