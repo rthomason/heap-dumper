@@ -1,9 +1,17 @@
 # heap-dumper
-A linux / mac command line tool that will dump the heap of any java process. It works in a way similar to how VisualVM performs heap dumps.
 
-There are two ways you can build this program, depending on how portable / easy to distrubte you want the files to be.
+A linux / mac command line tool that will dump the heap of any Java [6,7,8] process. It works in a way similar to VisualVM, which is significantly faster and more reliable than jmap.
 
-1. You can force your IDE to include your JDK's version of tools.jar when building the final artifact. This will let you use a single jar file.
-  * To run it: java -jar heapdumper.jar -pid=xxxxx -dir=/tmp
-2. Or you can build it with maven and use the supplied bash script to run it. The bash script will find your target machine's version of tools.jar which is more portable and should lead to a smaller jar file.
-  * To run it: ./heapdumper.sh -pid=xxxxx -dir=/tmp
+It requires a local `tools.jar` to build and will use the Java version set in $JAVA_HOME. It also requires a local `tools.jar` to run.
+
+## Build
+
+`mvn clean package`
+
+After building the jar, copy `heapdumper.sh` and `heapdumper.jar` into a directory on any machine to use.
+
+## Run
+
+There are two required command line arguments. A Java PID and an absolute path to a directory to write the heap dump.
+
+`./heapdumper.sh -pid=xxxx -dir=/tmp`

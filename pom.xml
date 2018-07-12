@@ -9,6 +9,9 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
+    <!-- This will build the app using the Java version set in $JAVA_HOME.
+         It requires your local tools.jar and only supports Java [6,7,8]. -->
+
     <profiles>
         <profile>
             <id>default-profile</id>
@@ -39,10 +42,10 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.7.0</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>
